@@ -13,6 +13,9 @@ ver 1
 了解類別的建構子與解構子
 了解資訊封裝的意義(encapsulation)
 了解同名異式(polymorphism)的概念)
+
+
+
 ver 2
 新增衍生自Person的Student類別
 新增列舉列別ClassName, Department
