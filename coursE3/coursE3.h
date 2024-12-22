@@ -12,5 +12,5 @@ void queryteacher();
 void queryrecord();
 void addstudent();
 void addcourse();
-void addteacher();
 void addrecord();
+void addteacher();

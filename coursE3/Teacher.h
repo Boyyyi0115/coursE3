@@ -9,25 +9,26 @@ using namespace std;
 class Teacher : public Person
 {
 private:
-	string teacherId; // ??v?s??
-	Department department; // ??v????t??
-	ClassName className; // ??v??¡ÂZ??
-	vector<Course> teachingCourses; // ??v????{
+    string teacherId;
+    Department department;
+    ClassName className;
+    vector<Course> teachingCourses;
 
 public:
-	Teacher(const string& id, const string& lastName, const string& firstName, const string& gender, const string birthDate, const string& teacherId, Department department, ClassName, const vector<Course>& courses);
+    
+    Teacher(const string& id, const string& lastName, const string& firstName, const string& gender, const string birthDate, const string& teacherId, Department department, ClassName, const vector<Course>& courses);
+    // getter
+    string getTeacherId() const;
+    Department getDepartment() const;
+    ClassName getClassName() const;
+    vector<Course> getCourses() const;
 
-	// getter
-	string getTeacherId() const;
-	Department getDepartment() const;
-	ClassName getClassName() const;
-	vector<Course> getCourses() const;
+    // setter
+    void setTeacherId(const string& teacherId);
+    void setDepartment(Department department);
+    void setClassName(ClassName className);
+    void setCourses(const vector<Course>& courses);
 
-	// setter
-	void setTeacherId(const string& teacherId);
-	void setDepartment(Department department);
-	void setClassName(ClassName className);
-	void setCourses(const vector<Course>& courses);
-
-	void display() const;
+    
+    void display() const;
 };

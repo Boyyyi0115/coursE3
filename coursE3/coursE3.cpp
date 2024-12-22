@@ -9,6 +9,7 @@
 #include "Record.h"
 #include "Utility.h"
 #include "coursE3.h"
+#include "Person.h"
 using namespace std;
 
 // 新增全域變數來儲存學生、老師、課程、選課紀錄的資料
@@ -159,6 +160,14 @@ void displayMenu() {
 			addcourse();
 			system("pause");
 			break;
+		case 11:
+			cout << "新增教師資料" << endl;
+			addteacher();
+			system("pause");
+		case 12:
+			cout << "新增選課資料" << endl;
+			addrecord();
+			system("pause");
 		case 0:
 			cout << "退出" << endl;
 			break;
@@ -335,16 +344,34 @@ void addcourse()
 	courses.push_back(Course(courseId, courseName, courseDescription));
 }
 
-void addteacher() 
+void addrecord()
 {
-	string id, lastName, firstName, gender,birthDate, teacherId, department,className, teachingCourses,courses;
-	int departmentChoice, classNameChoice;
-	cout << "身分證字號:";
+	string recordId, studentId, courseId, recordDate;
+	cout << "選課序號:";
+	cin >> recordId;
+	cout << "學號:";
+	cin >> studentId;
+	cout << "課程代碼:";
+	cin >> courseId;
+	cout << "選課日期:";
+	cin >> recordDate;
+	records.push_back(Record(studentId, courseId));
+}
+
+void addteacher()
+{
+	string id, lastName, firstName, birthDate, gender, teacherId;
+	int classNameChoice, departmentChoice, teachingCoursesChoice;
+	cout << "身分證字號: ";
 	cin >> id;
-	cout << "姓:";
+	cout << "姓: ";
 	cin >> lastName;
-	cout << "名:";
+	cout << "名: ";
 	cin >> firstName;
+	cout << "性別： ";
+	cin >> gender;
+	cout << "生日: ";
+	cin >> birthDate;
 	cout << "教師編號:";
 	cin >> teacherId;
 	cout << "教師所屬科系:";
@@ -361,21 +388,5 @@ void addteacher()
 	cout << "請選擇班級: ";
 	cin >> classNameChoice;
 	ClassName className = static_cast<ClassName>(classNameChoice);
-	cout << "教師所授課程:";
-	cin >> teachingCourses;
-	teachers.push_back(Teacher(id,lastName,firstName,gender, birthDate,  teacherId, department,courses));
-}
-
-void addrecord()
-{
-	int recordId, studentId, courseId, recordDate;
-	cout << "選課序號:";
-	cin >> recordId;
-	cout << "學號:";
-	cin >> studentId;
-	cout << "課程代碼:";
-	cin >> courseId;
-	cout << "選課日期:";
-	cin >> recordDate;
-	records.push_back(Record(studentId, courseId));
+	teachers.push_back(Teacher(id, lastName, firstName, gender, birthDate, teacherId, department, className));
 }
