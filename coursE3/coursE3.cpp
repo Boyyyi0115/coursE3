@@ -74,7 +74,7 @@ void initializeData()
 	vector<Course> teacher1_courses = { courses[0], courses[1], courses[2] };
 	teachers.push_back(Teacher("T001", "陳", "定宏", "男", "1980-7-1", "T001", Department::ComputerSciece, ClassName::_1A, teacher1_courses));
 	vector<Course> teacher2_courses = { courses[3], courses[4] };
-	teachers.push_back(Teacher("T002", "李", "大貴", "男", "1985-5-5", "T002", Department::InformationManagement, ClassName::_1B, teacher2_courses));
+	teachers.push_back(Teacher("T002", "張", "弘德", "男", "1985-5-5", "T002", Department::InformationManagement, ClassName::_1B, teacher2_courses));
 
 	// 新增10筆選課紀錄
 	records.push_back(Record("S001", "C001"));
@@ -103,14 +103,16 @@ void displayMenu() {
 
 		switch (choice) {
 		case 1:
-			cout << "列出學生資料" << endl;
-			listStudents();
+			liststudent();
 			break;
 		case 2:
+			listcourse();
 			break;
 		case 3:
+			listteacher();
 			break;
 		case 4:
+			listrecord();
 			break;
 		case 0:
 			cout << "退出" << endl;
@@ -122,13 +124,34 @@ void displayMenu() {
 	} while (choice != 0);
 }
 
-void listStudents()
+void listrecord()
+{
+	cout << "選課紀錄總共有" << records.size() << "筆" << endl;
+	for (auto record : records) {
+		record.display();
+	}
+}
+
+void listteacher()
+{
+	cout << "教師資料總共有" << teachers.size() << "筆" << endl;
+	for (auto teacher : teachers) {
+		teacher.display();
+	}
+}
+
+void listcourse()
+{
+	cout << "課程資料總共有" << courses.size()<<"筆"<<endl;
+	for (auto course : courses) {
+		course.display();
+	}
+}
+
+void liststudent()
 {
 	cout << "學生資料總共有" << students.size() << "筆" << endl;
-	cout << "----------------" << endl;
 	for (auto student : students) {
 		student.display();
-		cout << endl;
 	}
-	cout << endl;
 }

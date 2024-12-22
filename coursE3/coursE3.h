@@ -2,4 +2,11 @@
 
 void initializeData();
 void displayMenu();
-void listStudents();
+
+void listrecord();
+
+void listteacher();
+
+void listcourse();
+
+void liststudent();
