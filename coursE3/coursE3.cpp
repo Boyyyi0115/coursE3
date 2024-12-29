@@ -97,7 +97,8 @@ void displayMenu() {
 		cout << "1.  列出學生資料" << endl;
 		cout << "2.  列出課程資料" << endl;
 		cout << "3.  列出教師資料" << endl;
-		cout << "4.  查詢學生資料" << endl;
+		cout << "4.  列出選課資料" << endl;
+		cout << "5.  查詢學生資料" << endl;
 		cout << "6.  查詢課程資料" << endl;
 		cout << "7.  查詢教師資料" << endl;
 		cout << "8.  查詢選課紀錄" << endl;
