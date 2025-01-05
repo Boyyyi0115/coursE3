@@ -587,43 +587,38 @@ void saveRecordsToFile(const string& filename) {
 	}
 
 	for (const auto& record : records) {
+		
 		auto studentIt = find_if(students.begin(), students.end(), [&record](const Student& student) {
 			return student.getStudentId() == record.getStudentId();
 			});
 
+		
 		auto courseIt = find_if(courses.begin(), courses.end(), [&record](const Course& course) {
 			return course.getCourseId() == record.getCourseId();
 			});
 
-		if (studentIt == students.end()) {
-			cerr << "找不到學號 " << record.getStudentId() << " 的學生。" << endl;
-			continue;
+		if (studentIt != students.end() && courseIt != courses.end()) {
+			outFile << "選課紀錄編號: " << record.getRecordId() << endl;
+			outFile << "選課日期: " << record.getRecordDate() << endl;
+			outFile << "學生資料:" << endl;
+			outFile << "----------------" << endl;
+			outFile << "學號: " << studentIt->getStudentId() << endl;
+			outFile << "姓名: " << studentIt->getLastName() << studentIt->getFirstName() << endl;
+			outFile << "性別: " << studentIt->getGender() << endl;
+			outFile << "生日: " << studentIt->getBirthDate() << endl;
+			outFile << "科系: " << Utility::toString(studentIt->getDepartment()) << endl;
+			outFile << "班級: " << Utility::toString(studentIt->getClassName()) << endl;
+			outFile << "----------------" << endl;
+			outFile << "課程資料:" << endl;
+			outFile << "----------------" << endl;
+			outFile << "課程編號: " << courseIt->getCourseId() << endl;
+			outFile << "課程名稱: " << courseIt->getCourseName() << endl;
+			outFile << "課程描述: " << courseIt->getCourseDescription() << endl;
+			outFile << "===================" << endl;
+			outFile << endl;
 		}
-		if (courseIt == courses.end()) {
-			cerr << "找不到課程編號 " << record.getCourseId() << " 的課程。" << endl;
-			continue;
-		}
-
-		outFile << "選課紀錄編號: " << record.getRecordId() << endl;
-		outFile << "選課日期: " << record.getRecordDate() << endl;
-		outFile << "學生資料:\n----------------\n";
-		outFile << "學號: " << studentIt->getStudentId() << endl;
-		outFile << "姓名: " << studentIt->getLastName() << " " << studentIt->getFirstName() << endl;
-		outFile << "性別: " << studentIt->getGender() << endl;
-		outFile << "生日: " << studentIt->getBirthDate() << endl;
-		outFile << "科系: " << Utility::toString(studentIt->getDepartment()) << endl;
-		outFile << "班級: " << Utility::toString(studentIt->getClassName()) << endl;
-		outFile << "----------------" << endl;
-		outFile << "課程資料:\n----------------\n";
-		outFile << "課程編號: " << courseIt->getCourseId() << endl;
-		outFile << "課程名稱: " << courseIt->getCourseName() << endl;
-		outFile << "課程描述: " << courseIt->getCourseDescription() << endl;
-		outFile << "===================\n" << endl;
 	}
 
-	if (!outFile.good()) {
-		cerr << "寫入過程中發生錯誤！" << endl;
-	}
-
+	outFile.close();
 	cout << "選課紀錄已保存到文件: " << filename << endl;
 }
